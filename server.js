@@ -23,7 +23,7 @@ const posts = [
   }
 ]
 
-app.get("/", (req, res) => {
+app.get("/posts", (req, res) => {
   res.status(200).json(posts);
 });
 
