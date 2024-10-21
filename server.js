@@ -3,6 +3,8 @@ import express from "express";
 const app = express();
 const PORT = 3000;
 
+console.log(process.env.STRING_CONEXAO);
+
 app.use(express.json());
 
 function buscaPost(id) {
