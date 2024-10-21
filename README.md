@@ -13,4 +13,7 @@
 - string de conexão e .env
 - lógica de conexão da API com o banco
 - separação do projeto em camadas
-- 
+  - model
+  - controller
+  - routes
+- getAll direto do banco
