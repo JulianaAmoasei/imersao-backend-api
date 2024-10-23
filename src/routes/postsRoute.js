@@ -1,5 +1,8 @@
 import express from "express";
-import { listarPosts, listarPostPorID, criarPost } from "../controllers/postsController.js";
+import multer from "multer";
+import { listarPosts, listarPostPorID, criarPost, uploadImage } from "../controllers/postsController.js";
+
+const upload = multer({ dest: 'uploads/' });
 
 const routes = (app) => {
   app.use(express.json());
@@ -7,6 +10,7 @@ const routes = (app) => {
   app.get("/posts", listarPosts);
   app.get("/posts/:id", listarPostPorID);
   app.post("/posts", criarPost);
+  app.post('/posts/upload', upload.single('image'), uploadImage);
 };
 
 export default routes;
