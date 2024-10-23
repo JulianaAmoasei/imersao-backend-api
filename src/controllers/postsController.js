@@ -66,7 +66,7 @@ export async function uploadImage(req, res) {
 
 export async function atualizaNovoPost(req, res) {
   const id = req.params.id;
-  const urlDaImagem = `localhost:3000/images/${req.params.id}.png`
+  const urlDaImagem = `localhost:3000/images/${req.params.id}.png`;
 
   const postAtualizadoObj = {
     imgUrl: urlDaImagem,
@@ -87,8 +87,21 @@ export async function atualizaNovoPost(req, res) {
 
 export async function excluiPostPorID(req, res) {
   const idDoPost = req.params.id;
+  // aqui talvez vamos ter que refatorar para path mas no local tá funcionando
+  const caminhoImagem = `./public/images/${idDoPost}.png`
   try {
     const resultadoExclusao = await deletaUmPost(idDoPost);
+
+    if (resultadoExclusao.deletedCount !== 0) {
+      fs.unlink(caminhoImagem, (erro) =>
+        erro
+          ? console.error("erro ao excluir imagem", erro)
+          : console.log("imagem excluída")
+      );
+    } else {
+      throw new Error("erro na exclusão");
+    }
+
     res.status(200).json(resultadoExclusao);
   } catch (erro) {
     console.error(erro.message);
