@@ -17,3 +17,11 @@
   - controller
   - routes
 - getAll direto do banco
+
+## Aula 3
+
+- regras de negócio
+- CRUD: get one
+- CRUD: post
+- CRUD: put
+- CRUD: delete
