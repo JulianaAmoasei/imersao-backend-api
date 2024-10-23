@@ -4,7 +4,7 @@ import {
   getPostPorID,
   postNovoPost,
   atualizaPost,
-  deletaUmPost
+  deletaUmPost,
 } from "../models/postModel.js";
 
 export async function listarPosts(req, res) {
@@ -12,7 +12,8 @@ export async function listarPosts(req, res) {
     const listaPosts = await getTodosOsPosts();
     res.status(200).json(listaPosts);
   } catch (erro) {
-    res.status(500).json({ message: `${erro.message} - falha na requisição` });
+    console.error(erro.message);
+    res.status(500).json("falha na requisição");
   }
 }
 
@@ -22,7 +23,8 @@ export async function listarPostPorID(req, res) {
     const umPost = await getPostPorID(idDoPost);
     res.status(200).json(umPost);
   } catch (erro) {
-    res.status(500).json({ message: `${erro.message} - falha na requisição` });
+    console.error(erro.message);
+    res.status(500).json("falha na requisição");
   }
 }
 
@@ -34,7 +36,8 @@ export async function criarPost(req, res) {
       .status(200)
       .json({ message: "post criado com sucesso", post: postCriado });
   } catch (erro) {
-    res.status(500).json({ message: `${erro.message} - falha na requisição` });
+    console.error(erro.message);
+    res.status(500).json("falha na requisição");
   }
 }
 
@@ -56,17 +59,17 @@ export async function uploadImage(req, res) {
       id: novoDoc.insertedId.toString(),
     });
   } catch (erro) {
-    res
-      .status(500)
-      .json({ message: `${erro.message} - falha ao salvar imagem` });
+    console.error(erro.message);
+    res.status(500).json("falha ao salvar imagem");
   }
 }
 
 export async function atualizaNovoPost(req, res) {
   const id = req.params.id;
+  const urlDaImagem = `localhost:3000/uploads/${req.params.id}.png`
 
   const postAtualizadoObj = {
-    imgUrl: `${req.params.id}.png`,
+    imgUrl: urlDaImagem,
     descricao: req.body.descricao,
     alt: req.body.alt,
   };
@@ -77,7 +80,8 @@ export async function atualizaNovoPost(req, res) {
       .status(200)
       .json({ message: "post atualizado com sucesso", post: postCriado });
   } catch (erro) {
-    res.status(500).json({ message: `${erro.message} - falha na requisição` });
+    console.error(erro.message);
+    res.status(500).json("falha na requisição");
   }
 }
 
@@ -87,6 +91,7 @@ export async function excluiPostPorID(req, res) {
     const resultadoExclusao = await deletaUmPost(idDoPost);
     res.status(200).json(resultadoExclusao);
   } catch (erro) {
-    res.status(500).json({ message: `${erro.message} - falha na requisição` });
+    console.error(erro.message);
+    res.status(500).json("falha na requisição");
   }
 }
