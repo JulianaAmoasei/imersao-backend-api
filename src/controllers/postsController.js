@@ -3,6 +3,7 @@ import {
   getTodosOsPosts,
   getPostPorID,
   postNovoPost,
+  atualizaPost
 } from "../models/postModel.js";
 
 export async function listarPosts(req, res) {
@@ -49,15 +50,32 @@ export async function uploadImage(req, res) {
     //depois fazer lógica para pegar substring da ext se der tempo
     const arquivoAtualizado = `uploads/${novoDoc.insertedId}.png`;
     fs.renameSync(req.file.path, arquivoAtualizado);
-    res
-      .status(200)
-      .json({
-        message: "imagem salva com sucesso",
-        id: novoDoc.insertedId.toString(),
-      });
+    res.status(200).json({
+      message: "imagem salva com sucesso",
+      id: novoDoc.insertedId.toString(),
+    });
   } catch (erro) {
     res
       .status(500)
       .json({ message: `${erro.message} - falha ao salvar imagem` });
+  }
+}
+
+export async function atualizaNovoPost(req, res) {
+  const id = req.params.id;
+
+  const postAtualizadoObj = {
+    imgUrl: `${req.params.id}.png`,
+    descricao: req.body.descricao,
+    alt: req.body.alt,
+  };
+
+  try {
+    const postCriado = await atualizaPost(id, postAtualizadoObj);
+    res
+      .status(200)
+      .json({ message: "post atualizado com sucesso", post: postCriado });
+  } catch (erro) {
+    res.status(500).json({ message: `${erro.message} - falha na requisição` });
   }
 }

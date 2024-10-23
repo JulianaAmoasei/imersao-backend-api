@@ -31,3 +31,12 @@ export async function postNovoPost(novoPostObj) {
   // nesse momento não temos validação de dados de entrada
   return colecao.insertOne(novoPostObj);
 }
+
+export async function atualizaPost(postId, postAtualizado) {
+  const objectId = ObjectId.createFromHexString(postId);
+  const colecao = await conectarComColecaoPosts();
+  return colecao.updateOne(
+    { _id: new ObjectId(objectId) },
+    { $set: postAtualizado }
+  );
+}

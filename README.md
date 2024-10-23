@@ -22,6 +22,7 @@
 
 - regras de negócio
 - CRUD: get one
-- CRUD: post
+- CRUD: post simples
+- Upload de imagem para pasta no servidor
 - CRUD: put
-- CRUD: delete
+  - atualização de doc no Mongo com imagem + dados
