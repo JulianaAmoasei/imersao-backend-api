@@ -3,7 +3,8 @@ import {
   getTodosOsPosts,
   getPostPorID,
   postNovoPost,
-  atualizaPost
+  atualizaPost,
+  deletaUmPost
 } from "../models/postModel.js";
 
 export async function listarPosts(req, res) {
@@ -75,6 +76,16 @@ export async function atualizaNovoPost(req, res) {
     res
       .status(200)
       .json({ message: "post atualizado com sucesso", post: postCriado });
+  } catch (erro) {
+    res.status(500).json({ message: `${erro.message} - falha na requisição` });
+  }
+}
+
+export async function excluiPostPorID(req, res) {
+  const idDoPost = req.params.id;
+  try {
+    const resultadoExclusao = await deletaUmPost(idDoPost);
+    res.status(200).json(resultadoExclusao);
   } catch (erro) {
     res.status(500).json({ message: `${erro.message} - falha na requisição` });
   }

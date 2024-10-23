@@ -6,6 +6,7 @@ import {
   criarPost,
   uploadImage,
   atualizaNovoPost,
+  excluiPostPorID
 } from "../controllers/postsController.js";
 
 const upload = multer({ dest: "uploads/" });
@@ -20,6 +21,7 @@ const routes = (app) => {
   app.post("/posts", criarPost);
   app.post("/posts/upload", upload.single("image"), uploadImage);
   app.put("/posts/upload/:id", atualizaNovoPost);
+  app.delete("/posts/:id", excluiPostPorID);
 };
 
 export default routes;

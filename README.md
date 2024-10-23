@@ -26,3 +26,4 @@
 - Upload de imagem para pasta no servidor
 - CRUD: put
   - atualização de doc no Mongo com imagem + dados
+- CRUD: delete

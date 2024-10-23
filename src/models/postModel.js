@@ -40,3 +40,9 @@ export async function atualizaPost(postId, postAtualizado) {
     { $set: postAtualizado }
   );
 }
+
+export async function deletaUmPost(id) {
+  const objectId = ObjectId.createFromHexString(id);
+  const colecao = await conectarComColecaoPosts();
+  return colecao.deleteOne({ _id: new ObjectId(objectId) });
+}
