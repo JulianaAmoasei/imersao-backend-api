@@ -52,7 +52,7 @@ export async function uploadImage(req, res) {
     const novoDoc = await postNovoPost(novoPost);
     //por enquanto só png
     //depois fazer lógica para pegar substring da ext se der tempo
-    const arquivoAtualizado = `uploads/${novoDoc.insertedId}.png`;
+    const arquivoAtualizado = `public/images/${novoDoc.insertedId}.png`;
     fs.renameSync(req.file.path, arquivoAtualizado);
     res.status(200).json({
       message: "imagem salva com sucesso",
@@ -66,7 +66,7 @@ export async function uploadImage(req, res) {
 
 export async function atualizaNovoPost(req, res) {
   const id = req.params.id;
-  const urlDaImagem = `localhost:3000/uploads/${req.params.id}.png`
+  const urlDaImagem = `localhost:3000/images/${req.params.id}.png`
 
   const postAtualizadoObj = {
     imgUrl: urlDaImagem,

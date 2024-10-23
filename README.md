@@ -27,3 +27,18 @@
 - CRUD: put
   - atualização de doc no Mongo com imagem + dados
 - CRUD: delete
+
+## Aula 4
+
+- servindo arquivos estáticos
+- deletar as imagens do servidor
+- integração com API do Gemini
+- integração com o front-end
+
+
+## Pontos de atenção
+
+- trechos de código que dá pra dar c+p
+- substituir "desafio" por "como é no mundo real"
+- insights de padrões e exemplos
+- delegar assuntos para conteúdo extra

@@ -9,7 +9,7 @@ import {
   excluiPostPorID
 } from "../controllers/postsController.js";
 
-const upload = multer({ dest: "uploads/" });
+const upload = multer({ dest: './public/images/' });
 
 const routes = (app) => {
   app.use(express.json());
