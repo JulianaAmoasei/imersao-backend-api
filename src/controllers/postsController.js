@@ -67,7 +67,7 @@ export async function uploadImage(req, res) {
 
 export async function atualizaNovoPost(req, res) {
   const id = req.params.id;
-  const urlDaImagem = `localhost:3000/images/${req.params.id}.png`;
+  const urlDaImagem = `http://localhost:3000/images/${req.params.id}.png`;
 
   try {
     const imageBuffer = fs.readFileSync(`public/images/${req.params.id}.png`);

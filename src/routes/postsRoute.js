@@ -1,18 +1,25 @@
 import express from "express";
 import multer from "multer";
+import cors from "cors";
 import {
   listarPosts,
   listarPostPorID,
   criarPost,
   uploadImage,
   atualizaNovoPost,
-  excluiPostPorID
+  excluiPostPorID,
 } from "../controllers/postsController.js";
 
-const upload = multer({ dest: './public/images/' });
+const upload = multer({ dest: "./public/images/" });
+
+const corsOptions = {
+  origin: "http://localhost:8000",
+  optionsSuccessStatus: 200,
+};
 
 const routes = (app) => {
   app.use(express.json());
+  app.use(cors(corsOptions));
   app
     .route("/")
     .get((req, res) => res.status(200).send("URL base da imersão back-end!"));
