@@ -6,6 +6,7 @@ import {
   atualizaPost,
   deletaUmPost,
 } from "../models/postModel.js";
+import gerarDescricaoComGemini from "../services/geminiService.js";
 
 export async function listarPosts(req, res) {
   try {
@@ -68,13 +69,16 @@ export async function atualizaNovoPost(req, res) {
   const id = req.params.id;
   const urlDaImagem = `localhost:3000/images/${req.params.id}.png`;
 
-  const postAtualizadoObj = {
-    imgUrl: urlDaImagem,
-    descricao: req.body.descricao,
-    alt: req.body.alt,
-  };
-
   try {
+    const imageBuffer = fs.readFileSync(`public/images/${req.params.id}.png`);
+    const altText = await gerarDescricaoComGemini(imageBuffer);
+
+    const postAtualizadoObj = {
+      imgUrl: urlDaImagem,
+      descricao: req.body.descricao,
+      alt: altText,
+    };
+
     const postCriado = await atualizaPost(id, postAtualizadoObj);
     res
       .status(200)
@@ -88,7 +92,7 @@ export async function atualizaNovoPost(req, res) {
 export async function excluiPostPorID(req, res) {
   const idDoPost = req.params.id;
   // aqui talvez vamos ter que refatorar para path mas no local tá funcionando
-  const caminhoImagem = `./public/images/${idDoPost}.png`
+  const caminhoImagem = `./public/images/${idDoPost}.png`;
   try {
     const resultadoExclusao = await deletaUmPost(idDoPost);
 

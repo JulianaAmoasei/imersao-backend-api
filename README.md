@@ -31,7 +31,7 @@
 ## Aula 4
 
 - servindo arquivos estáticos
-- deletar as imagens do servidor
+- deletar as imagens do servidor com fs
 - integração com API do Gemini
 - integração com o front-end
 
