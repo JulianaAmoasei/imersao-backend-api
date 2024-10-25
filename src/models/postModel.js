@@ -9,8 +9,7 @@ export async function conectarComColecaoPosts() {
     const colecao = db.collection("posts");
     return colecao;
   } catch (erro) {
-    console.error("Falha na conexão com o banco!", erro);
-    await mongoClient.close();
+    console.error({msg: "erro ao conectar com coleção", erro});
   }
 }
 

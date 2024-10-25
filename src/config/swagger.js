@@ -1,4 +1,4 @@
-import schemas from "../routes/postSchema.json" assert { type: "json" };
+import { postSchema } from "../routes/postSchema.js";
 
 export const swaggerOptions = {
   definition: {
@@ -23,8 +23,8 @@ export const swaggerOptions = {
         url: "http://localhost:3000",
       },
     ],
-    paths: schemas.paths,
-    components: schemas.components,
+    paths: postSchema.paths,
+    components: postSchema.components,
   },
   apis: ["./src/routes/*.js"],
 };

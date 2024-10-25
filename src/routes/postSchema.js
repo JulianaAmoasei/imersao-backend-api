@@ -1,4 +1,4 @@
-{
+export const postSchema = {
   "openapi": "3.0.0",
   "info": {
     "title": "Insta Bytes API",
