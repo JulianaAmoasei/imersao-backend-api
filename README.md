@@ -35,6 +35,10 @@
 - integração com API do Gemini
 - integração com o front-end
 
+## Aula 5
+
+- documentação com swagger
+
 
 ## Pontos de atenção
 

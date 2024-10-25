@@ -1,0 +1,111 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Insta Bytes API",
+    "version": "1.0.0",
+    "description": "API da aplicação de posts da Imersão Alura Back-End"
+  },
+  "tags": [
+    {
+      "name": "Insta Bytes",
+      "description": "API da aplicação de posts da Imersão Alura Back-End"
+    }
+  ],
+  "paths": {
+    "/posts": {
+      "get": {
+        "summary": "Lista todos os posts",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "Lista dos posts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Post"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/{id}": {
+      "get": {
+        "summary": "Retornar um post pelo ID",
+        "tags": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "O ID do post desejado"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Objeto post referente o ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Post"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu algum erro interno"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Post": {
+        "type": "object",
+        "required": [
+          "imgUrl",
+          "descricao",
+          "alt"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "ID auto-gerado (Mongo ObjectID)"
+          },
+          "imgUrl": {
+            "type": "string",
+            "description": "URL de referência da imagem"
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição da imagem"
+          },
+          "alt": {
+            "type": "string",
+            "description": "Alt-text da imagem para acessibilidade"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date",
+            "description": "Data de criação do documento"
+          }
+        },
+        "example": {
+          "_id": "6719c927e23cd4cb933e3133",
+          "imgUrl": "http://localhost:3000/images/6719c927e23cd4cb933e3133.png",
+          "descricao": "Viagem ao Rio de Janeiro",
+          "alt": "paisagem do Rio de Janeiro, vista do Pão de Açúcar",
+          "createdAt": "2024-10-10T04:05:06.157Z"
+        }
+      }
+    }
+  }
+}
