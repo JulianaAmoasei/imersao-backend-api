@@ -26,7 +26,7 @@
   "scripts": {
     "dev": "node --watch --env-file=.env server.js",
     "lint": "npx eslint . *.js --fix",
-    "test": ""
+    "test": "node --test"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",

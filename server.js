@@ -5,7 +5,7 @@ import routes from "./src/routes/postsRoute.js";
 import { swaggerOptions } from "./src/config/swagger.js";
 
 const PORT = 3000;
-const app = express();
+export const app = express();
 app.use(express.static("public"));
 
 const specs = swaggerJSDoc(swaggerOptions);
