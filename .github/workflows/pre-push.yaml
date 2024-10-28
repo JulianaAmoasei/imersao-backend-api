@@ -1,0 +1,31 @@
+name: pre-push
+on:
+  push:
+    branches-ignore:
+      - main
+jobs:
+  lint:
+    name: Linter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Instala as dependencias
+        run: npm i
+      - name: Roda o linter
+        run: npm run lint
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Instala as dependencias
+        run: npm i
+      - name: Roda os testes
+        run: npm test
+        
